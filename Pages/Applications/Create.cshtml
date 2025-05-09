@@ -1,51 +1,52 @@
 @page
-@model AppliTrack.Pages_Applications.CreateModel
+@model AppliTrack.Pages.Applications.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using AppliTrack.Models
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Application";
 }
 
-<h1>Create</h1>
+<h1>Create Application</h1>
 
-<h4>Application</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Application.Company" class="control-label"></label>
-                <input asp-for="Application.Company" class="form-control" />
-                <span asp-validation-for="Application.Company" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.Role" class="control-label"></label>
-                <input asp-for="Application.Role" class="form-control" />
-                <span asp-validation-for="Application.Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.DateApplied" class="control-label"></label>
-                <input asp-for="Application.DateApplied" class="form-control" />
-                <span asp-validation-for="Application.DateApplied" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.Status" class="control-label"></label>
-                <select asp-for="Application.Status" class="form-control"></select>
-                <span asp-validation-for="Application.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Application.NextActionDate" class="control-label"></label>
-                <input asp-for="Application.NextActionDate" class="form-control" />
-                <span asp-validation-for="Application.NextActionDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Application.Company" class="control-label"></label>
+        <input asp-for="Application.Company" class="form-control" />
+        <span asp-validation-for="Application.Company" class="text-danger"></span>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+    <div class="form-group">
+        <label asp-for="Application.Role" class="control-label"></label>
+        <input asp-for="Application.Role" class="form-control" />
+        <span asp-validation-for="Application.Role" class="text-danger"></span>
+    </div>
 
+    <div class="form-group">
+        <label asp-for="Application.DateApplied" class="control-label"></label>
+        <input asp-for="Application.DateApplied" type="date" class="form-control" />
+        <span asp-validation-for="Application.DateApplied" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Application.Status" class="control-label"></label>
+        <select asp-for="Application.Status"
+                asp-items="Html.GetEnumSelectList<ApplicationStatus>()"
+                class="form-control" required>
+            <option value="">-- Select status --</option>
+        </select>
+        <span asp-validation-for="Application.Status" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Application.NextActionDate" class="control-label"></label>
+        <input asp-for="Application.NextActionDate" type="date" class="form-control" />
+        <span asp-validation-for="Application.NextActionDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="./Index" class="btn btn-link">Back to list</a>
+</form>

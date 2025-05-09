@@ -12,7 +12,7 @@ public class Application
     [DataType(DataType.Date)] public DateTime DateApplied    { get; set; }
     [Required] public ApplicationStatus Status { get; set; }
     [DataType(DataType.Date)] public DateTime? NextActionDate { get; set; }
-    public ICollection<Note> Notes    { get; set; }
+    public ICollection<Note> Notes { get; set; } = new List<Note>();
 }
 
 public enum ApplicationStatus

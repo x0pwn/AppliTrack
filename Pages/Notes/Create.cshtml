@@ -2,19 +2,10 @@
 @model AppliTrack.Pages_Notes.CreateModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Create Note";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-
-<h4>Note</h4>
+<h1>Create Note</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -48,5 +39,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>

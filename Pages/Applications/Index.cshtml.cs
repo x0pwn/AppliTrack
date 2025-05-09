@@ -1,20 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AppliTrack.Data;
 using AppliTrack.Models;
 
-namespace AppliTrack.Pages_Applications
+namespace AppliTrack.Pages.Applications
 {
     public class IndexModel : PageModel
     {
-        private readonly AppliTrack.Data.JobTrackerContext _context;
+        private readonly JobTrackerContext _context;
 
-        public IndexModel(AppliTrack.Data.JobTrackerContext context)
+        public IndexModel(JobTrackerContext context)
         {
             _context = context;
         }

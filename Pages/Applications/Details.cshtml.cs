@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AppliTrack.Data;
 using AppliTrack.Models;
 
-namespace AppliTrack.Pages_Applications
+namespace AppliTrack.Pages.Applications
 {
     public class DetailsModel : PageModel
     {

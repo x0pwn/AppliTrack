@@ -1,20 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using AppliTrack.Data;
 using AppliTrack.Models;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 
-namespace AppliTrack.Pages_Applications
+namespace AppliTrack.Pages.Applications
 {
     public class CreateModel : PageModel
     {
-        private readonly AppliTrack.Data.JobTrackerContext _context;
+        private readonly JobTrackerContext _context;
 
-        public CreateModel(AppliTrack.Data.JobTrackerContext context)
+        public CreateModel(JobTrackerContext context)
         {
             _context = context;
         }
@@ -26,20 +25,36 @@ namespace AppliTrack.Pages_Applications
 
         [BindProperty]
         public Application Application { get; set; } = default!;
-        
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Applications == null || Application == null)
+            // Check ModelState errors if validation fails
+            if (!ModelState.IsValid)
             {
+                // Log which fields are invalid
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine($"Validation Error: {error.ErrorMessage}");
+                }
                 return Page();
             }
 
-            _context.Applications.Add(Application);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            try
+            {
+                // Make sure Application.Notes is initialized
+                Application.Notes = new List<Note>();
+                
+                _context.Applications.Add(Application);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+            catch (Exception ex)
+            {
+                // Add the error to ModelState
+                ModelState.AddModelError(string.Empty, $"Error creating application: {ex.Message}");
+                return Page();
+            }
         }
     }
 }
