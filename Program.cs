@@ -1,9 +1,8 @@
-using AppliTrack.Data;                   // ① bring in your DbContext
-using Microsoft.EntityFrameworkCore;     // ② bring in EF Core extensions
+using AppliTrack.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// configure SQLite using your connection string
 builder.Services.AddDbContext<JobTrackerContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
