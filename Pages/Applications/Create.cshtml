@@ -1,0 +1,51 @@
+@page
+@model AppliTrack.Pages_Applications.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Application</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Application.Company" class="control-label"></label>
+                <input asp-for="Application.Company" class="form-control" />
+                <span asp-validation-for="Application.Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.Role" class="control-label"></label>
+                <input asp-for="Application.Role" class="form-control" />
+                <span asp-validation-for="Application.Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.DateApplied" class="control-label"></label>
+                <input asp-for="Application.DateApplied" class="form-control" />
+                <span asp-validation-for="Application.DateApplied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.Status" class="control-label"></label>
+                <select asp-for="Application.Status" class="form-control"></select>
+                <span asp-validation-for="Application.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Application.NextActionDate" class="control-label"></label>
+                <input asp-for="Application.NextActionDate" class="form-control" />
+                <span asp-validation-for="Application.NextActionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
